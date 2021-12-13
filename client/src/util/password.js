@@ -33,8 +33,8 @@ const getRandomSymbol = () => {
 // Generates a random password of a certain length by randomly calling the above
 // methods in an array.
 const generatePassword = (length = 16, lower = true, upper = true, number = true, symbols = true) => {
-   // Return an empty string if length is zero.
-   if (randFunctionsArr.length === 0) return '';
+   // Return an empty string if length is 0
+   if (length === 0) return '';
    
    // Store selected methods in an array
    const randFunctionsArr = [];
@@ -42,6 +42,9 @@ const generatePassword = (length = 16, lower = true, upper = true, number = true
    if (upper) randFunctionsArr.push(getRandomUpperCase);
    if (number) randFunctionsArr.push(getRandomNumber);
    if (symbols) randFunctionsArr.push(getRandomSymbol);
+
+   // Return an empty string if all options are false.
+   if (randFunctionsArr.length === 0) return '';
    
    // Call a random function from the above array 'length' times 
    // and concat result to string.
